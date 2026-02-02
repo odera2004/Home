@@ -30,7 +30,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-primary tracking-tight">
-            CINEMATIC
+            NAIRESMEDIA
           </Link>
 
           {/* Desktop Navigation */}
