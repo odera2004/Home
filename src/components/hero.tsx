@@ -28,28 +28,26 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-6 inline-block px-4 py-2 bg-accent bg-opacity-20 rounded-full border border-accent border-opacity-30 animate-fadeInDown">
+        {/* <div className="mb-6 inline-block px-4 py-2 bg-accent bg-opacity-20 rounded-full border border-accent border-opacity-30 animate-fadeInDown">
           <span className="text-sm font-semibold text-accent">
             Premium Media Services
           </span>
-        </div>
-
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary mb-6 leading-tight animate-fadeInUp">
-          Cinematic Media for Luxury Real Estate
+        </div> */}
+       
+       <h1 className="font-playfair text-7xl text-primary lg:text-5xl font-bold mb-6 leading-tight max-w-2xl mx-auto font-light animate-fadeInUp animation-delay-200">
+            Visuals that Attract Buyers.
+            Websites That Convert Them.
         </h1>
 
-        <p className="text-xl sm:text-2xl text-primary text-opacity-70 mb-4 font-light animate-fadeInUp animation-delay-100">
-          From Westlands to Kilimani — Elevate Every Listing
-        </p>
-
-        <p className="text-lg text-primary text-opacity-60 mb-12 max-w-2xl mx-auto font-light animate-fadeInUp animation-delay-200">
-          We create cinematic visuals that attract buyers and strengthen brands.
+        <p className="font-playfair text-primary mb-6 leading-tight animate-fadeInUp">
+          The all-in-one digital partner for Kenya's develpers and agents. We combines
+          cinematic media with high-performance websites to sell your listings faster.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fadeInUp animation-delay-300">
           <Link
             href="/booking"
-            className="px-8 py-4 bg-primary text-white font-semibold rounded hover:bg-opacity-90 transition-all flex items-center gap-2 group"
+            className="rounded-full px-8 py-4 bg-primary text-white font-semibold rounded hover:bg-opacity-90 transition-all flex items-center gap-2 group"
           >
             Book a Session
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -57,7 +55,7 @@ export function Hero() {
 
           <Link
             href="#portfolio"
-            className="px-8 py-4 border-2 border-primary text-primary font-semibold rounded hover:bg-primary hover:text-white transition-all"
+            className="rounded-full px-8 py-4 border-2 border-primary text-primary font-semibold rounded hover:bg-primary hover:text-white transition-all"
           >
             See Portfolio
           </Link>

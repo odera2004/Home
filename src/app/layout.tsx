@@ -1,57 +1,84 @@
 import React from "react"
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type { Metadata } from "next"
+import {
+  Geist,
+  Geist_Mono,
+  Playfair_Display,
+  Berkshire_Swash,
+  Playwrite_AU_NSW,
+  GFS_Didot,
+  Courier_Prime,
+} from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
 
-const _geist = Geist({
+// Initialize fonts and define CSS variables
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-geist-sans", // Optional: defines the CSS variable name
-});
+  variable: "--font-geist-sans",
+})
 
-const _geistMono = Geist_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
-});
+})
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+})
+
+const berkshire = Berkshire_Swash({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-berkshire",
+})
+
+const playwrite = Playwrite_AU_NSW({
+  subsets: ["latin"],
+  variable: "--font-playwrite",
+})
+
+const didot = GFS_Didot({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-didot",
+})
+
+const courier = Courier_Prime({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-typewriter",
+})
 
 export const metadata: Metadata = {
-  title: 'Cinematic Media | Luxury Real Estate Photography & Videography',
+  title: "Cinematic Media | Luxury Real Estate Photography & Videography",
   description:
-    'Professional cinematic media services for luxury real estate. From Westlands to Kilimani — aerial drone footage, videography, photography, and social media content.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
-  openGraph: {
-    title: 'Cinematic Media | Luxury Real Estate Photography & Videography',
-    description: 'Elevate your luxury property listings with professional cinematic media services',
-    type: 'website',
-  },
+    "Professional cinematic media services for luxury real estate. From Westlands to Kilimani — aerial drone footage, videography, photography, and social media content.",
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en">
-      {/* FIX: Added backticks and properly injected the font variables */}
-      <body className={`${_geist.variable} ${_geistMono.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`
+        ${geistSans.variable}
+        ${geistMono.variable}
+        ${playfair.variable}
+        ${berkshire.variable}
+        ${playwrite.variable}
+        ${didot.variable}
+        ${courier.variable}
+      `}
+    >
+      {/* Apply 'font-typewriter' here to make it the global default 
+        while keeping 'antialiased' for smooth rendering.
+      */}
+      <body className="font-typewriter antialiased">
         {children}
         <Analytics />
       </body>

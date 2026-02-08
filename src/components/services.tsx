@@ -30,10 +30,10 @@ export function Services() {
     <section className="py-20 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
+          <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-primary mb-4">
             What We Do
           </h2>
-          <p className="text-lg text-primary text-opacity-60">
+          <p className="font-playfair text-lg text-primary text-opacity-60">
             Comprehensive media solutions for luxury real estate
           </p>
         </div>

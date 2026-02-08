@@ -41,10 +41,10 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl sm:text-6xl font-bold text-primary mb-4">
+            <h1 className="font-playfair text-5xl sm:text-6xl font-bold text-primary mb-4">
               Get In Touch
             </h1>
-            <p className="text-xl text-primary text-opacity-60">
+            <p className="font-playfair text-xl text-primary text-opacity-60">
               Have a question? We'd love to hear from you.
             </p>
           </div>

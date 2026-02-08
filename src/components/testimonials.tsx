@@ -41,7 +41,7 @@ export function Testimonials() {
     <section className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fadeInDown">
-          <h2 className="text-4xl sm:text-5xl font-bold text-primary mb-4">
+          <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-primary mb-4">
             What Our Clients Say
           </h2>
         </div>
@@ -59,16 +59,16 @@ export function Testimonials() {
             </div>
 
             {/* Quote */}
-            <p className="text-2xl font-light text-primary mb-8 leading-relaxed italic">
+            <p className="font-playfair text-2xl font-light text-primary mb-8 leading-relaxed italic">
               "{testimonials[current].content}"
             </p>
 
             {/* Author */}
             <div>
-              <p className="font-semibold text-primary">
+              <p className="font-playfair font-semibold text-primary">
                 {testimonials[current].name}
               </p>
-              <p className="text-sm text-primary text-opacity-60">
+              <p className="font-playfair text-sm text-primary text-opacity-60">
                 {testimonials[current].title} at {testimonials[current].company}
               </p>
             </div>
