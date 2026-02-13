@@ -79,11 +79,11 @@ export default function ServicesPage() {
         {/* Hero */}
         <div className="bg-secondary py-16 px-4 sm:px-6 lg:px-8 mb-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold text-primary mb-6">
+            <h1 className="font-playfair text-5xl sm:text-6xl font-bold text-primary mb-6">
               Our Services
             </h1>
-            <p className="text-xl text-primary text-opacity-60">
-              Comprehensive media solutions designed for luxury real estate excellence
+            <p className="font-playfair text-xl text-primary text-opacity-60">
+              Services Built for Conversion
             </p>
           </div>
         </div>
@@ -174,13 +174,13 @@ export default function ServicesPage() {
 
           {/* CTA */}
           <div className="bg-primary text-white rounded-lg p-12 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Listings?</h2>
-            <p className="text-accent mb-8 max-w-2xl mx-auto">
+            <h2 className="font-playfair text-3xl font-bold mb-4">Ready to Elevate Your Listings?</h2>
+            <p className="font-playfair text-accent mb-8 max-w-2xl mx-auto">
               Let's discuss which services are perfect for your properties.
             </p>
             <a
               href="/booking"
-              className="inline-block px-8 py-3 bg-accent text-primary font-semibold rounded hover:bg-opacity-90 transition-all"
+              className="rounded-full inline-block px-8 py-3 bg-accent text-primary font-semibold rounded hover:bg-opacity-90 transition-all"
             >
               Request a Quote
             </a>

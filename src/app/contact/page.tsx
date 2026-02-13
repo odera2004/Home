@@ -1,7 +1,6 @@
 'use client'
 
 import React from "react"
-
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Mail, Phone, MapPin, Clock, Instagram } from 'lucide-react'
@@ -11,11 +10,14 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '', // Added phone number field
     subject: '',
     message: '',
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -25,13 +27,44 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 3000)
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '88644973-0e22-47c1-a8a2-845971f37b51',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone, // Added phone to API
+          subject: formData.subject,
+          message: formData.message,
+          from_name: 'NAIRES MEDIA',
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setSubmitted(true)
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+        setTimeout(() => {
+          setSubmitted(false)
+        }, 3000)
+      } else {
+        throw new Error(data.message || 'Failed to send message.')
+      }
+    } catch (err) {
+      setError('Failed to send message. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -186,8 +219,9 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white"
-                      placeholder="John Doe"
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="Your name "
+                      disabled={loading}
                     />
                   </div>
 
@@ -202,8 +236,25 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white"
-                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="Email"
+                      disabled={loading}
+                    />
+                  </div>
+
+                  {/* Phone Number - Added here */}
+                  <div>
+                    <label className="block text-sm font-semibold text-primary mb-2">
+                      Phone Number (Optional)
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="+254 712 345 678"
+                      disabled={loading}
                     />
                   </div>
 
@@ -218,8 +269,9 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white"
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
                       placeholder="How can we help?"
+                      disabled={loading}
                     />
                   </div>
 
@@ -234,17 +286,19 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white"
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
                       placeholder="Your message here..."
+                      disabled={loading}
                     />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all"
+                    disabled={loading}
+                    className="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {loading ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               )}
