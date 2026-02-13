@@ -12,7 +12,6 @@ import {
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-// Initialize fonts and define CSS variables
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
@@ -34,6 +33,7 @@ const berkshire = Berkshire_Swash({
   variable: "--font-berkshire",
 })
 
+/* Playwrite DOES NOT support subsets */
 const playwrite = Playwrite_AU_NSW({
   variable: "--font-playwrite",
 })
@@ -74,9 +74,6 @@ export default function RootLayout({
         ${courier.variable}
       `}
     >
-      {/* Apply 'font-typewriter' here to make it the global default 
-        while keeping 'antialiased' for smooth rendering.
-      */}
       <body className="font-typewriter antialiased">
         {children}
         <Analytics />
