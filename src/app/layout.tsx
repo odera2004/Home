@@ -35,7 +35,6 @@ const berkshire = Berkshire_Swash({
 })
 
 const playwrite = Playwrite_AU_NSW({
-  subsets: ["latin"],
   variable: "--font-playwrite",
 })
 
