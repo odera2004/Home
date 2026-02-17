@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Calendar, MapPin, Camera, CheckCircle2 } from 'lucide-react'
+import { Calendar, CheckCircle2, Info } from 'lucide-react'
 
 export default function BookingPage() {
   const [formData, setFormData] = useState({
@@ -12,7 +12,6 @@ export default function BookingPage() {
     phone: '',
     service: '',
     propertyAddress: '',
-    propertyType: '',
     date: '',
     notes: '',
   })
@@ -25,7 +24,7 @@ export default function BookingPage() {
     { value: 'photography', label: 'Premium Photography' },
     { value: 'drone', label: 'Aerial Drone Coverage' },
     { value: 'social', label: 'Social Media Content' },
-    { value: 'package', label: 'Complete Package (All Services)' },
+    { value: 'package', label: 'Complete Package' },
   ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -36,10 +35,13 @@ export default function BookingPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    // Simulating API call
+    
+    // Simulate a reliable API call
     setTimeout(() => {
       setLoading(false)
       setSubmitted(true)
+      // Reset form
+      setFormData({ name: '', email: '', phone: '', service: '', propertyAddress: '', date: '', notes: '' })
     }, 1500)
   }
 
@@ -47,141 +49,124 @@ export default function BookingPage() {
     <main className="bg-[#FAF9F6] min-h-screen">
       <Navbar />
       
-      <div className="pt-40 pb-24">
+      {/* The relative z-10 ensures the form is clickable and not blocked by the hidden navbar menu */}
+      <div className="pt-40 pb-24 relative z-10">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           
-          {/* Header Section */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-            <div className="max-w-2xl">
-              <span className="text-accent font-medium tracking-[0.3em] uppercase text-sm mb-4 block">
-                Reservations
-              </span>
-              <h1 className="font-playfair text-5xl md:text-7xl text-primary leading-tight font-light">
-                Secure Your <br /> 
-                <span className="italic">Production Date</span>
-              </h1>
-            </div>
-            <div className="hidden md:block w-32 h-[1px] bg-accent/30 mb-4" />
+          <div className="mb-16">
+            <span className="text-accent font-medium tracking-[0.4em] uppercase text-[10px] mb-4 block">Reservations</span>
+            <h1 className="font-playfair text-5xl md:text-6xl text-primary font-light">Book a <span className="italic">Session</span></h1>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-16">
+          <div className="grid lg:grid-cols-3 gap-12 items-start">
             
-            {/* Left Side: The Form (2 Columns) */}
+            {/* FORM CONTAINER */}
             <div className="lg:col-span-2">
               {submitted ? (
-                <div className="bg-white p-12 rounded-3xl shadow-sm border border-neutral-100 text-center animate-fadeIn">
+                <div className="bg-white p-12 rounded-[2rem] shadow-sm border border-neutral-100 text-center animate-fadeIn">
                   <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-10 h-10 text-accent" />
                   </div>
-                  <h2 className="font-playfair text-3xl font-bold text-primary mb-4">Request Received</h2>
-                  <p className="text-primary/60 max-w-sm mx-auto mb-8">
-                    Our production team will review your property details and contact you within 24 hours to finalize the schedule.
-                  </p>
+                  <h2 className="font-playfair text-3xl text-primary mb-4">Request Received</h2>
+                  <p className="text-primary/60 mb-8 max-w-sm mx-auto">Our team will review your property details and reach out within 24 hours.</p>
                   <button 
-                    onClick={() => window.location.href = '/'} 
-                    className="px-10 py-4 border border-primary text-primary text-xs uppercase tracking-widest font-bold hover:bg-primary hover:text-white transition-all rounded-full"
+                    onClick={() => setSubmitted(false)} 
+                    className="px-10 py-4 bg-primary text-white text-[10px] uppercase tracking-widest font-bold rounded-full hover:bg-accent transition-all"
                   >
-                    Return Home
+                    New Booking
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-10">
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {[
-                      { label: 'Full Name', name: 'name', type: 'text', placeholder: 'John Doe' },
-                      { label: 'Email Address', name: 'email', type: 'email', placeholder: 'john@agency.com' },
-                      { label: 'Phone Number', name: 'phone', type: 'tel', placeholder: '+254 --- --- ---' },
-                      { label: 'Property Address', name: 'propertyAddress', type: 'text', placeholder: 'Westlands, Nairobi' },
-                    ].map((field) => (
-                      <div key={field.name} className="group">
-                        <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50 mb-3 group-focus-within:text-accent transition-colors">
-                          {field.label}
-                        </label>
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={(formData as any)[field.name]}
-                          onChange={handleChange}
-                          required
-                          className="w-full bg-transparent border-b border-neutral-300 py-3 focus:border-primary outline-none transition-all font-sans text-primary placeholder:text-neutral-300"
-                          placeholder={field.placeholder}
-                        />
-                      </div>
-                    ))}
+                <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-neutral-100 space-y-8">
+                  
+                  {/* Personal Info */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-primary/50 ml-1">Full Name</label>
+                      <input 
+                        type="text" name="name" required value={formData.name} onChange={handleChange}
+                        className="w-full bg-[#FAF9F6] border-none p-4 rounded-xl focus:ring-2 focus:ring-accent/20 outline-none text-primary"
+                        placeholder="e.g. Victor Kanoga"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-primary/50 ml-1">Email Address</label>
+                      <input 
+                        type="email" name="email" required value={formData.email} onChange={handleChange}
+                        className="w-full bg-[#FAF9F6] border-none p-4 rounded-xl focus:ring-2 focus:ring-accent/20 outline-none text-primary"
+                        placeholder="hello@agency.com"
+                      />
+                    </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="group">
-                      <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50 mb-3 group-focus-within:text-accent">
-                        Service Selection
-                      </label>
+                  {/* Contact & Location */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-primary/50 ml-1">Phone Number</label>
+                      <input 
+                        type="tel" name="phone" required value={formData.phone} onChange={handleChange}
+                        className="w-full bg-[#FAF9F6] border-none p-4 rounded-xl focus:ring-2 focus:ring-accent/20 outline-none text-primary"
+                        placeholder="+254 --- --- ---"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-primary/50 ml-1">Property Address</label>
+                      <input 
+                        type="text" name="propertyAddress" required value={formData.propertyAddress} onChange={handleChange}
+                        className="w-full bg-[#FAF9F6] border-none p-4 rounded-xl focus:ring-2 focus:ring-accent/20 outline-none text-primary"
+                        placeholder="Nairobi, Westlands..."
+                      />
+                    </div>
+                  </div>
+
+                  {/* Service & Date */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-primary/50 ml-1">Service Type</label>
                       <select 
-                        name="service" 
-                        value={formData.service} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full bg-transparent border-b border-neutral-300 py-3 focus:border-primary outline-none font-sans text-primary appearance-none cursor-pointer"
+                        name="service" required value={formData.service} onChange={handleChange}
+                        className="w-full bg-[#FAF9F6] border-none p-4 rounded-xl focus:ring-2 focus:ring-accent/20 outline-none text-primary appearance-none"
                       >
-                        <option value="">Choose Service</option>
-                        {services.map((svc) => <option key={svc.value} value={svc.value}>{svc.label}</option>)}
+                        <option value="">Select Service</option>
+                        {services.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
                       </select>
                     </div>
-
-                    <div className="group">
-                      <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-primary/50 mb-3 group-focus-within:text-accent">
-                        Preferred Date
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-primary/50 ml-1">Preferred Date</label>
                       <input 
-                        type="date" 
-                        name="date" 
-                        value={formData.date} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full bg-transparent border-b border-neutral-300 py-3 focus:border-primary outline-none font-sans text-primary" 
+                        type="date" name="date" required value={formData.date} onChange={handleChange}
+                        className="w-full bg-[#FAF9F6] border-none p-4 rounded-xl focus:ring-2 focus:ring-accent/20 outline-none text-primary"
                       />
                     </div>
                   </div>
 
                   <button 
-                    type="submit" 
-                    disabled={loading}
-                    className="group relative inline-flex items-center justify-center px-12 py-5 bg-primary overflow-hidden rounded-full transition-all hover:pr-16"
+                    type="submit" disabled={loading}
+                    className="w-full py-5 bg-primary text-white text-[10px] uppercase tracking-[0.3em] font-bold rounded-full hover:bg-accent transition-all shadow-lg shadow-primary/10 disabled:opacity-50"
                   >
-                    <span className="relative z-10 text-white text-xs uppercase tracking-[0.3em] font-bold">
-                      {loading ? 'Processing...' : 'Send Request'}
-                    </span>
-                    <span className="absolute right-6 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all text-white">
-                      →
-                    </span>
+                    {loading ? 'Submitting Request...' : 'Confirm Booking Request'}
                   </button>
                 </form>
               )}
             </div>
 
-            {/* Right Side: Information Sidebar (1 Column) */}
-            <div className="lg:col-span-1 space-y-12">
-              <div className="bg-white p-10 rounded-3xl border border-neutral-100 shadow-sm">
-                <h3 className="font-playfair text-2xl mb-6 italic">Why Naires?</h3>
-                <ul className="space-y-6">
-                  {[
-                    { icon: Camera, title: "4K Cinema Quality", desc: "Mastered for high-end displays." },
-                    { icon: Calendar, title: "Fast Turnaround", desc: "48-hour delivery on most projects." },
-                    { icon: MapPin, title: "Global Standards", desc: "International luxury aesthetic." }
-                  ].map((item, i) => (
-                    <li key={i} className="flex gap-4">
-                      <item.icon className="w-5 h-5 text-accent shrink-0" />
-                      <div>
-                        <p className="text-sm font-bold text-primary">{item.title}</p>
-                        <p className="text-xs text-primary/50">{item.desc}</p>
-                      </div>
-                    </li>
-                  ))}
+            {/* SIDEBAR INFO */}
+            <div className="space-y-6">
+              <div className="bg-primary p-8 rounded-[2rem] text-white">
+                <Info className="w-6 h-6 text-accent mb-4" />
+                <h3 className="font-playfair text-xl mb-3">Booking Terms</h3>
+                <ul className="text-xs text-white/70 space-y-3 leading-relaxed">
+                  <li>• Dates are subject to weather conditions.</li>
+                  <li>• 48-hour delivery on all standard edits.</li>
+                  <li>• Travel fees may apply outside of Nairobi.</li>
                 </ul>
               </div>
-
-              <div className="px-4">
-                <p className="text-xs text-primary/40 leading-relaxed uppercase tracking-widest">
-                  * Note: All bookings are subject to location scouting and weather conditions for aerial coverage.
+              
+              <div className="p-8 border border-neutral-200 rounded-[2rem] bg-white">
+                <Calendar className="w-6 h-6 text-accent mb-4" />
+                <h3 className="font-playfair text-xl text-primary mb-2">Availability</h3>
+                <p className="text-xs text-primary/50 leading-relaxed">
+                  Our production schedule typically fills 2 weeks in advance. For urgent "Just Listed" projects, please call us directly.
                 </p>
               </div>
             </div>
@@ -189,7 +174,6 @@ export default function BookingPage() {
           </div>
         </div>
       </div>
-      
       <Footer />
     </main>
   )

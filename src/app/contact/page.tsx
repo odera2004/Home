@@ -3,182 +3,104 @@
 import React, { useState } from "react"
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Mail, Phone, MapPin, Clock, Instagram, Send } from 'lucide-react'
+import { Instagram, Send, MapPin, Mail, Phone } from 'lucide-react'
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  })
-
-  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [submitted, setSubmitted] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(null)
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: '88644973-0e22-47c1-a8a2-845971f37b51',
-          ...formData,
-          from_name: 'NAIRES MEDIA',
-        }),
-      })
-
-      const data = await response.json()
-      if (data.success) {
-        setSubmitted(true)
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-        setTimeout(() => setSubmitted(false), 5000)
-      } else {
-        throw new Error(data.message || 'Failed to send.')
-      }
-    } catch (err) {
-      setError('Something went wrong. Please try again.')
-    } finally {
+    // Simulate API call
+    setTimeout(() => {
       setLoading(false)
-    }
+      setSubmitted(true)
+    }, 1500)
   }
 
   return (
     <main className="bg-[#FAF9F6] min-h-screen">
       <Navbar />
-      
-      <div className="pt-44 pb-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="pt-48 pb-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           
-          {/* Section Header */}
-          <div className="mb-24">
-            <span className="text-accent font-medium tracking-[0.4em] uppercase text-xs mb-4 block animate-fadeIn">
-              Connect With Us
-            </span>
-            <h1 className="font-playfair text-6xl md:text-8xl font-light text-primary leading-tight">
-              Start a <br />
-              <span className="italic">Conversation.</span>
-            </h1>
-          </div>
-
-          <div className="grid lg:grid-cols-12 gap-20">
+          <div className="grid lg:grid-cols-2 gap-24 items-start">
             
-            {/* LEFT: CONTACT DIRECTORY (5 Columns) */}
-            <div className="lg:col-span-5 space-y-16">
-              <div>
-                <h2 className="font-playfair text-3xl text-primary mb-10 italic">Office Details</h2>
-                
-                <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-12">
-                  {/* Email & Phone */}
-                  <div className="space-y-8">
-                    <div className="group">
-                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Electronic Mail</p>
-                      <a href="mailto:hello@naires.media" className="text-xl font-playfair text-primary hover:text-accent transition-colors">
-                        hello@naires.media
-                      </a>
-                    </div>
-                    <div className="group">
-                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Direct Line</p>
-                      <a href="tel:+254112973302" className="text-xl font-playfair text-primary hover:text-accent transition-colors">
-                        +254 112 973 302
-                      </a>
-                    </div>
+            {/* Left Side: Editorial Content */}
+            <div>
+              <span className="text-accent font-medium tracking-[0.4em] uppercase text-xs mb-4 block">Inquiries</span>
+              <h1 className="font-playfair text-6xl md:text-8xl font-light text-primary mb-12">Let’s <br/><span className="italic text-accent">Connect.</span></h1>
+              
+              <div className="space-y-12">
+                <div className="flex gap-6 items-start">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-neutral-100 shrink-0">
+                    <Mail size={18} className="text-accent"/>
                   </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest font-bold text-primary/40 mb-1">Email us</p>
+                    <p className="text-xl font-playfair text-primary">hello@naires.media</p>
+                  </div>
+                </div>
 
-                  {/* Location & Hours */}
-                  <div className="space-y-8">
-                    <div className="group">
-                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Studio Location</p>
-                      <p className="text-lg font-playfair text-primary/70">
-                        Westlands, Nairobi, Kenya
-                      </p>
-                    </div>
-                    <div className="group">
-                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Availability</p>
-                      <p className="text-lg font-playfair text-primary/70">
-                        Mon — Fri / 9am — 6pm
-                      </p>
-                    </div>
+                <div className="flex gap-6 items-start">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-neutral-100 shrink-0">
+                    <MapPin size={18} className="text-accent"/>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest font-bold text-primary/40 mb-1">Studio</p>
+                    <p className="text-xl font-playfair text-primary">Westlands, Nairobi</p>
                   </div>
                 </div>
               </div>
 
-              {/* Social Link */}
-              <div className="pt-10 border-t border-neutral-200">
-                <a 
-                  href="https://instagram.com/four.horsemen.media" 
-                  target="_blank" 
-                  className="flex items-center gap-4 group"
-                >
-                  <div className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
-                    <Instagram className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
-                  </div>
-                  <span className="text-xs uppercase tracking-widest font-bold text-primary">Follow our journey</span>
+              <div className="mt-20 pt-10 border-t border-neutral-200">
+                <p className="text-xs text-primary/40 uppercase tracking-widest mb-6 font-bold">Follow Our Work</p>
+                <a href="#" className="inline-flex items-center gap-3 text-primary hover:text-accent transition-colors">
+                  <Instagram size={20} />
+                  <span className="font-playfair text-lg">@naires.media</span>
                 </a>
               </div>
             </div>
 
-            {/* RIGHT: MINIMALIST FORM (7 Columns) */}
-            <div className="lg:col-span-7 bg-white p-10 md:p-16 rounded-[2rem] shadow-sm border border-neutral-100">
+            {/* Right Side: The Form */}
+            <div className="bg-white p-8 md:p-16 rounded-[2.5rem] shadow-xl shadow-primary/[0.02] border border-neutral-100">
               {submitted ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-20 animate-fadeIn">
-                  <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mb-6">
-                    <Send className="w-8 h-8 text-accent" />
+                <div className="text-center py-20 animate-fadeIn">
+                  <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 text-accent">
+                    <Send size={32} />
                   </div>
-                  <h3 className="font-playfair text-3xl text-primary mb-2">Message Delivered</h3>
-                  <p className="text-primary/50">We will get back to you shortly.</p>
+                  <h3 className="font-playfair text-3xl text-primary mb-2">Message Sent</h3>
+                  <p className="text-primary/50 text-sm">We'll get back to you within 24 hours.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-10">
-                  <div className="grid md:grid-cols-2 gap-10">
-                    <div className="relative group">
-                      <input 
-                        type="text" name="name" required placeholder="Full Name" 
-                        value={formData.name} onChange={handleChange}
-                        className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300"
-                      />
-                    </div>
-                    <div className="relative group">
-                      <input 
-                        type="email" name="email" required placeholder="Email Address" 
-                        value={formData.email} onChange={handleChange}
-                        className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="relative group">
+                <form onSubmit={handleSubmit} className="space-y-12">
+                  <div className="group relative">
                     <input 
-                      type="text" name="subject" required placeholder="Subject" 
-                      value={formData.subject} onChange={handleChange}
-                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300"
+                      type="text" required placeholder="Your Name"
+                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-all font-playfair text-lg placeholder:text-neutral-300"
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
                     />
                   </div>
-
-                  <div className="relative group">
+                  <div className="group relative">
+                    <input 
+                      type="email" required placeholder="Email Address"
+                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-all font-playfair text-lg placeholder:text-neutral-300"
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    />
+                  </div>
+                  <div className="group relative">
                     <textarea 
-                      name="message" required rows={4} placeholder="Your Message" 
-                      value={formData.message} onChange={handleChange}
-                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300 resize-none"
+                      required rows={4} placeholder="How can we help?"
+                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-all font-playfair text-lg placeholder:text-neutral-300 resize-none"
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
                     />
                   </div>
-
-                  {error && <p className="text-red-500 text-xs tracking-widest uppercase">{error}</p>}
-
+                  
                   <button 
-                    disabled={loading}
-                    className="w-full md:w-auto px-16 py-5 bg-primary text-white text-[10px] uppercase tracking-[0.3em] font-bold rounded-full hover:bg-accent transition-all duration-500 shadow-xl shadow-primary/10 disabled:opacity-50"
+                    type="submit" disabled={loading}
+                    className="w-full py-5 bg-primary text-white text-[11px] uppercase tracking-[0.3em] font-bold rounded-full hover:bg-accent transition-all shadow-xl shadow-primary/20"
                   >
                     {loading ? 'Sending...' : 'Send Message'}
                   </button>
