@@ -1,16 +1,15 @@
 'use client'
 
-import React from "react"
+import React, { useState } from "react"
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Mail, Phone, MapPin, Clock, Instagram } from 'lucide-react'
-import { useState } from 'react'
+import { Mail, Phone, MapPin, Clock, Instagram, Send } from 'lucide-react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '', // Added phone number field
+    phone: '',
     subject: '',
     message: '',
   })
@@ -21,10 +20,7 @@ export default function ContactPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,274 +31,161 @@ export default function ContactPage() {
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           access_key: '88644973-0e22-47c1-a8a2-845971f37b51',
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone, // Added phone to API
-          subject: formData.subject,
-          message: formData.message,
+          ...formData,
           from_name: 'NAIRES MEDIA',
         }),
       })
 
       const data = await response.json()
-
       if (data.success) {
         setSubmitted(true)
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-        setTimeout(() => {
-          setSubmitted(false)
-        }, 3000)
+        setTimeout(() => setSubmitted(false), 5000)
       } else {
-        throw new Error(data.message || 'Failed to send message.')
+        throw new Error(data.message || 'Failed to send.')
       }
     } catch (err) {
-      setError('Failed to send message. Please try again.')
+      setError('Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <main className="bg-white">
+    <main className="bg-[#FAF9F6] min-h-screen">
       <Navbar />
-      <div className="pt-32 pb-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="font-playfair text-5xl sm:text-6xl font-bold text-primary mb-4">
-              Get In Touch
+      
+      <div className="pt-44 pb-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          
+          {/* Section Header */}
+          <div className="mb-24">
+            <span className="text-accent font-medium tracking-[0.4em] uppercase text-xs mb-4 block animate-fadeIn">
+              Connect With Us
+            </span>
+            <h1 className="font-playfair text-6xl md:text-8xl font-light text-primary leading-tight">
+              Start a <br />
+              <span className="italic">Conversation.</span>
             </h1>
-            <p className="font-playfair text-xl text-primary text-opacity-60">
-              Have a question? We'd love to hear from you.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-20">
-            {/* Contact Info */}
-            <div>
-              <h2 className="text-3xl font-bold text-primary mb-8">Contact Information</h2>
-
-              <div className="space-y-8">
-                {/* Email */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-white" />
+          <div className="grid lg:grid-cols-12 gap-20">
+            
+            {/* LEFT: CONTACT DIRECTORY (5 Columns) */}
+            <div className="lg:col-span-5 space-y-16">
+              <div>
+                <h2 className="font-playfair text-3xl text-primary mb-10 italic">Office Details</h2>
+                
+                <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-12">
+                  {/* Email & Phone */}
+                  <div className="space-y-8">
+                    <div className="group">
+                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Electronic Mail</p>
+                      <a href="mailto:hello@naires.media" className="text-xl font-playfair text-primary hover:text-accent transition-colors">
+                        hello@naires.media
+                      </a>
+                    </div>
+                    <div className="group">
+                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Direct Line</p>
+                      <a href="tel:+254112973302" className="text-xl font-playfair text-primary hover:text-accent transition-colors">
+                        +254 112 973 302
+                      </a>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Email</h3>
-                    <a
-                      href="mailto:hello@cinematic.media"
-                      className="text-accent hover:underline"
-                    >
-                      hello@cinematic.media
-                    </a>
-                  </div>
-                </div>
 
-                {/* Phone */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-white" />
+                  {/* Location & Hours */}
+                  <div className="space-y-8">
+                    <div className="group">
+                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Studio Location</p>
+                      <p className="text-lg font-playfair text-primary/70">
+                        Westlands, Nairobi, Kenya
+                      </p>
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Phone</h3>
-                    <a
-                      href="tel:+254712345678"
-                      className="text-accent hover:underline"
-                    >
-                      +254 712 345 678
-                    </a>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-white" />
+                    <div className="group">
+                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 mb-2">Availability</p>
+                      <p className="text-lg font-playfair text-primary/70">
+                        Mon — Fri / 9am — 6pm
+                      </p>
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Location</h3>
-                    <p className="text-primary text-opacity-70">
-                      Westlands, Nairobi<br />
-                      Kenya
-                    </p>
-                  </div>
-                </div>
-
-                {/* Hours */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <Clock className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Hours</h3>
-                    <p className="text-primary text-opacity-70">
-                      Mon - Fri: 9am - 6pm EAT<br />
-                      Sat - Sun: By appointment
-                    </p>
-                  </div>
-                </div>
-
-                {/* Social */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                      <Instagram className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Follow Us</h3>
-                    <a
-                      href="https://instagram.com"
-                      className="text-accent hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      @cinematic.media
-                    </a>
                   </div>
                 </div>
               </div>
+
+              {/* Social Link */}
+              <div className="pt-10 border-t border-neutral-200">
+                <a 
+                  href="https://instagram.com/four.horsemen.media" 
+                  target="_blank" 
+                  className="flex items-center gap-4 group"
+                >
+                  <div className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+                    <Instagram className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
+                  </div>
+                  <span className="text-xs uppercase tracking-widest font-bold text-primary">Follow our journey</span>
+                </a>
+              </div>
             </div>
 
-            {/* Contact Form */}
-            <div className="bg-secondary rounded-lg p-8 sm:p-12">
-              <h2 className="text-3xl font-bold text-primary mb-8">Send Us a Message</h2>
-
+            {/* RIGHT: MINIMALIST FORM (7 Columns) */}
+            <div className="lg:col-span-7 bg-white p-10 md:p-16 rounded-[2rem] shadow-sm border border-neutral-100">
               {submitted ? (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+                <div className="h-full flex flex-col items-center justify-center text-center py-20 animate-fadeIn">
+                  <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                    <Send className="w-8 h-8 text-accent" />
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">
-                    Message Sent!
-                  </h3>
-                  <p className="text-primary text-opacity-70">
-                    Thank you for reaching out. We'll get back to you shortly.
-                  </p>
+                  <h3 className="font-playfair text-3xl text-primary mb-2">Message Delivered</h3>
+                  <p className="text-primary/50">We will get back to you shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name */}
-                  <div>
-                    <label className="block text-sm font-semibold text-primary mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
-                      placeholder="Your name "
-                      disabled={loading}
+                <form onSubmit={handleSubmit} className="space-y-10">
+                  <div className="grid md:grid-cols-2 gap-10">
+                    <div className="relative group">
+                      <input 
+                        type="text" name="name" required placeholder="Full Name" 
+                        value={formData.name} onChange={handleChange}
+                        className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300"
+                      />
+                    </div>
+                    <div className="relative group">
+                      <input 
+                        type="email" name="email" required placeholder="Email Address" 
+                        value={formData.email} onChange={handleChange}
+                        className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="relative group">
+                    <input 
+                      type="text" name="subject" required placeholder="Subject" 
+                      value={formData.subject} onChange={handleChange}
+                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300"
                     />
                   </div>
 
-                  {/* Email */}
-                  <div>
-                    <label className="block text-sm font-semibold text-primary mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
-                      placeholder="Email"
-                      disabled={loading}
+                  <div className="relative group">
+                    <textarea 
+                      name="message" required rows={4} placeholder="Your Message" 
+                      value={formData.message} onChange={handleChange}
+                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-colors font-playfair text-lg placeholder:text-neutral-300 resize-none"
                     />
                   </div>
 
-                  {/* Phone Number - Added here */}
-                  <div>
-                    <label className="block text-sm font-semibold text-primary mb-2">
-                      Phone Number (Optional)
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
-                      placeholder="+254 712 345 678"
-                      disabled={loading}
-                    />
-                  </div>
+                  {error && <p className="text-red-500 text-xs tracking-widest uppercase">{error}</p>}
 
-                  {/* Subject */}
-                  <div>
-                    <label className="block text-sm font-semibold text-primary mb-2">
-                      Subject *
-                    </label>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
-                      placeholder="How can we help?"
-                      disabled={loading}
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label className="block text-sm font-semibold text-primary mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
-                      placeholder="Your message here..."
-                      disabled={loading}
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
+                  <button 
                     disabled={loading}
-                    className="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto px-16 py-5 bg-primary text-white text-[10px] uppercase tracking-[0.3em] font-bold rounded-full hover:bg-accent transition-all duration-500 shadow-xl shadow-primary/10 disabled:opacity-50"
                   >
                     {loading ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               )}
             </div>
+
           </div>
         </div>
       </div>

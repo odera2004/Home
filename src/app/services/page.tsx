@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Video, Camera, Zap, Sparkles, Clock, Award } from 'lucide-react'
+import { Video, Camera, Layout, Sparkles, Clock, Award } from 'lucide-react'
 
 export const metadata = {
   title: 'Services | Cinematic Media',
@@ -35,16 +35,16 @@ const detailedServices = [
     ],
   },
   {
-    icon: Zap,
-    title: 'Aerial Drone Coverage',
-    price: 'From $600',
-    description: 'Stunning aerial perspectives showcasing property context and architectural details.',
+    icon: Layout,
+    title: 'Custom Web Design',
+    price: 'From $2,500',
+    description: 'High-performance, bespoke digital experiences tailored to your brand identity and user goals.',
     features: [
-      '4K drone footage',
-      'Multiple angles and elevations',
-      'Smooth cinematic movements',
-      'Sunset/sunrise options',
-      'Property mapping included',
+      'Responsive mobile-first layout',
+      'SEO-optimized architecture',
+      'Interactive UI/UX components',
+      'Custom CMS integration',
+      'Accessibility (WCAG) compliance',
     ],
   },
   {

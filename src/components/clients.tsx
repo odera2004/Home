@@ -41,7 +41,6 @@ export function Clients() {
                 onMouseLeave={() => setHovered(null)}
                 className="w-full sm:w-72 h-52 rounded-2xl flex flex-col items-center justify-center transition-all duration-500 cursor-pointer bg-white border border-[#E5E5E1] hover:shadow-2xl hover:-translate-y-2 group"
               >
-                {/* Logo initials with elegant serif styling */}
                 <div
                   className={`text-7xl font-playfair mb-4 transition-all duration-500 ${
                     hovered === idx ? 'text-[#C5A059]' : 'text-[#1A1A1A] opacity-80'
@@ -49,8 +48,6 @@ export function Clients() {
                 >
                   {logo.initials}
                 </div>
-
-                {/* Brand name */}
                 <p className="text-[#666666] font-light tracking-[0.2em] uppercase text-xs">
                   {logo.name}
                 </p>
@@ -60,72 +57,76 @@ export function Clients() {
         </div>
       </section>
 
-      {/* VIDEO SHOWCASE SECTION - LOCAL HIGH-QUALITY VIDEO */}
-      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-secondary to-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
-
-          {/* LEFT TEXT */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-               <h3 className="font-playfair text-4xl font-light tracking-tight">Experience Our Quality</h3>
-               <div className="h-[1px] w-12 bg-amber-500" />
-            </div>
+      {/* NEW OUTSTANDING VIDEO SHOWCASE SECTION */}
+      <section className="relative py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-12 items-center">
             
-            <div className="font-playfair text-primary mb-6 leading-tight animate-fadeInUp">
-              <p>
-                To see more of our cinematic storytelling and the luxury clients we partner with, 
-                visit our Instagram showcase:{" "}
-                <a
-                  href="https://instagram.com/four.horsemen.media"
-                  className="text-primary-500 underline underline-offset-8 hover:text-amber-400 transition-colors"
-                >
-                  @four.horsemen.media
-                </a>.
-              </p>
-
-              <p>
-                Ready to elevate your property? Reach out for a full portfolio:{" "}
-                <a
-                  href="mailto:contact@fourhorsemenmedia.com"
-                  className="text-primary-500 underline underline-offset-8 hover:text-amber-400 transition-colors"
-                >
-                  contact@fourhorsemenmedia.com
-                </a>.
-              </p>
-            </div>
-          </div>
-
-          {/* RIGHT VIDEO - ORGANIC LEAF SHAPE */}
-          <div className="relative group w-full max-w-md mx-auto md:ml-auto">
-            {/* Subtle glow effect */}
-            <div className="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full opacity-50 transition-opacity duration-700" />
-            
-            <div className="relative overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] 
-              rounded-tl-[120px] rounded-br-[120px] 
-              md:rounded-tl-[240px] md:rounded-br-[240px] 
-              rounded-tr-2xl rounded-bl-2xl
-              aspect-[3/4] bg-neutral-900 border border-white/5"
-            >
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
-              >
-                {/* MAKE SURE TO ADD THE VIDEO TO YOUR PUBLIC FOLDER: 
-                   1. Place the .MOV or .mp4 file in /public/videos/ 
-                   2. Rename it to showcase.mp4 (or update the src below)
-                */}
-                <source src="/videos/showcase.mov" type="video/mov" />
-                Your browser does not support the video tag.
-              </video>
+            {/* LEFT SIDE: TEXT CONTENT (2 Cols) */}
+            <div className="lg:col-span-2 space-y-10 z-10">
+              <div className="space-y-4">
+                <span className="text-amber-600 font-medium tracking-[0.3em] uppercase text-sm block">Portfolio Highlight</span>
+                <h3 className="font-playfair text-5xl md:text-6xl font-light text-primary leading-[1.1]">
+                  Visual <br /> 
+                  <span className="italic">Storytelling</span>
+                </h3>
+                <div className="h-[2px] w-20 bg-amber-500/50" />
+              </div>
               
-              {/* Luxury glass tint overlay */}
-              <div className="absolute inset-0 bg-black/10 pointer-events-none group-hover:bg-transparent transition-colors duration-500" />
+              <div className="space-y-6 font-playfair text-lg text-neutral-600 leading-relaxed">
+                <p>
+                  We don't just film spaces; we capture the emotion of luxury living. This showcase 
+                  highlights our technical precision in lighting and composition.
+                </p>
+                <div className="pt-4 space-y-4">
+                  <a
+                    href="https://instagram.com/four.horsemen.media"
+                    className="group flex items-center gap-3 text-primary font-medium hover:text-amber-600 transition-colors"
+                  >
+                    <span className="w-8 h-[1px] bg-primary group-hover:w-12 group-hover:bg-amber-600 transition-all" />
+                    Follow @four.horsemen.media
+                  </a>
+                  <a
+                    href="mailto:contact@fourhorsemenmedia.com"
+                    className="group flex items-center gap-3 text-primary font-medium hover:text-amber-600 transition-colors"
+                  >
+                    <span className="w-8 h-[1px] bg-primary group-hover:w-12 group-hover:bg-amber-600 transition-all" />
+                    Inquire for Bookings
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
 
+            {/* RIGHT SIDE: CINEMATIC YOUTUBE FRAME (3 Cols) */}
+            <div className="lg:col-span-3 relative group">
+              {/* Decorative "Glass" Backdrop */}
+              <div className="absolute -top-10 -right-10 w-64 h-64 bg-amber-100/40 rounded-full blur-3xl -z-10 group-hover:bg-amber-200/50 transition-colors duration-1000" />
+              <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-neutral-100 rounded-full blur-2xl -z-10" />
+
+              {/* Main Video Frame */}
+              <div className="relative p-3 bg-white border border-neutral-200 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden transition-transform duration-700 hover:scale-[1.02]">
+                <div className="aspect-video rounded-2xl overflow-hidden relative">
+                  {/* YouTube Embed */}
+                  <iframe
+                    className="w-full h-full object-cover"
+                    src="https://www.youtube.com/embed/nSKxRsRH4YU?autoplay=1&mute=1&loop=1&playlist=nSKxRsRH4YU&controls=0&modestbranding=1&rel=0"
+                    title="Luxury Real Estate Showcase"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+
+                  {/* High-End Texture Overlay (Invisible until hover) */}
+                  <div className="absolute inset-0 pointer-events-none border-[12px] border-white/10 rounded-2xl group-hover:border-white/0 transition-all duration-500" />
+                </div>
+              </div>
+
+              {/* Floating Stat/Label Card */}
+              <div className="absolute -bottom-6 -right-6 md:right-10 bg-white p-6 rounded-xl shadow-xl border border-neutral-100 hidden md:block animate-bounce-slow">
+                <p className="text-amber-600 text-xs tracking-widest uppercase font-bold mb-1">Live Preview</p>
+                <p className="font-playfair italic text-primary text-lg">Cinematic 4K Quality</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
     </>

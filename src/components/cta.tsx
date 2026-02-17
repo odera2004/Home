@@ -10,7 +10,7 @@ export function CTA() {
         </h2>
 
         <p className="font-playfair text-xl text-accent mb-12 max-w-2xl mx-auto">
-          We deseign high-end and digital experiences that elevate your listings, increase buyer interest, and help you sell faster.
+          We design high-end and digital experiences that elevate your listings, increase buyer interest, and help you sell faster.
         </p>
 
         <Link
