@@ -1,143 +1,144 @@
-'use client'
-
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Check, Linkedin, Twitter, Instagram } from 'lucide-react'
+import { Check, Linkedin, Twitter, Instagram} from 'lucide-react'
 import { team } from '@/data/team'
+
+export const metadata = {
+  title: 'About | Cinematic Media',
+  description: 'Learn about our mission, vision, and the team behind cinematic media for luxury real estate.',
+}
 
 export default function AboutPage() {
   const values = [
-    { title: 'Excellence', description: 'We pursue perfection in every frame, ensuring your property stands alone.' },
-    { title: 'Innovation', description: 'Embracing cutting-edge 8K cinema tech and FPV drone capabilities.' },
-    { title: 'Integrity', description: 'Transparent partnerships built on consistent, world-class delivery.' },
-    { title: 'Partnership', description: 'We don’t just film for you; we strategize with you as a creative ally.' },
+    { title: 'Excellence', description: 'We pursue perfection in every frame.' },
+    { title: 'Innovation', description: 'We embrace cutting-edge technology and techniques.' },
+    { title: 'Integrity', description: 'We deliver honest work that exceeds expectations.' },
+    { title: 'Partnership', description: 'We work as an extension of your team.' },
   ]
 
   return (
-    <main className="bg-[#FAF9F6] min-h-screen">
+    <main className="bg-white">
       <Navbar />
-      
-      {/* HERO SECTION - More expansive and airy */}
-      <section className="pt-48 pb-32 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <span className="text-accent font-medium tracking-[0.4em] uppercase text-xs mb-6 block animate-fadeIn">
-            Established Excellence
-          </span>
-          <h1 className="font-playfair text-6xl md:text-8xl font-light text-primary mb-8 leading-tight">
-            Cinematic <br />
-            <span className="italic">Perspective.</span>
-          </h1>
-          <p className="font-playfair text-xl md:text-2xl text-primary/60 max-w-2xl mx-auto font-light leading-relaxed">
-            Redefining luxury property presentation through technical precision and artistic storytelling.
-          </p>
-        </div>
-      </section>
-
-      {/* STORY SECTION - Overlapping design for high-end feel */}
-      <section className="pb-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative grid lg:grid-cols-12 items-center">
-            {/* The "Box" is now a sophisticated floating element */}
-            <div className="lg:col-span-7 bg-white p-12 md:p-20 rounded-3xl shadow-sm border border-neutral-100 z-10">
-              <h2 className="font-playfair text-4xl font-bold text-primary mb-8">Our Story</h2>
-              <div className="space-y-6 text-primary/70 text-lg leading-relaxed font-light">
-                <p>
-                  Founded with a vision to transform how luxury properties are presented, Cinematic Media
-                  combines artistic excellence with technical precision. We believe that premium properties
-                  deserve premium visual storytelling.
-                </p>
-                <p>
-                  Today, we are trusted by Kenya’s leading real estate brands to capture the essence of their most
-                  prestigious listings. Every project is a celebration of architectural beauty and luxury living.
-                </p>
-              </div>
-            </div>
-            {/* Decorative background text */}
-            <div className="hidden lg:block lg:col-span-5 absolute -right-10 text-[12rem] font-playfair font-bold text-primary/[0.03] select-none">
-              History
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MISSION & VISION - Clean, minimal cards */}
-      <section className="pb-32 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-          <div className="group p-12 bg-primary rounded-3xl transition-transform duration-500 hover:-translate-y-2">
-            <h3 className="text-accent font-medium tracking-widest uppercase text-xs mb-6">The Mission</h3>
-            <p className="font-playfair text-3xl text-white font-light leading-snug">
-              To elevate luxury real estate through compelling visual narratives that connect qualified buyers to their dream estates.
+      <div className="pt-32 pb-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Hero */}
+          <div className="font-playfair mb-20 text-center">
+            <h1 className="text-5xl sm:text-6xl font-bold text-primary mb-6">
+              About Cinematic
+            </h1>
+            <p className="text-xl text-primary text-opacity-60">
+              Redefining luxury property presentation through cinematic excellence
             </p>
           </div>
-          <div className="group p-12 bg-white border border-neutral-100 rounded-3xl transition-transform duration-500 hover:-translate-y-2 shadow-sm">
-            <h3 className="text-accent font-medium tracking-widest uppercase text-xs mb-6">The Vision</h3>
-            <p className="font-playfair text-3xl text-primary font-light leading-snug italic">
-              To set the global standard for premium real estate media in East Africa, one frame at a time.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* VALUES - Grid with custom borders */}
-      <section className="pb-32 px-6 bg-white py-24">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-playfair text-4xl text-center text-primary mb-20">Our Core Values</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-100 border border-neutral-100">
-            {values.map((value, idx) => (
-              <div key={idx} className="bg-white p-10 hover:bg-[#FAF9F6] transition-colors group">
-                <Check className="w-5 h-5 text-accent mb-6 group-hover:scale-125 transition-transform" />
-                <h4 className="font-playfair text-xl font-bold text-primary mb-4">{value.title}</h4>
-                <p className="text-primary/60 text-sm leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TEAM SECTION - Updated with the "New Look" logic */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <span className="text-accent font-medium tracking-[0.3em] uppercase text-xs mb-4 block">The Collective</span>
-            <h2 className="font-playfair text-5xl font-light text-primary">Meet the Team</h2>
+          {/* Story */}
+          <div className="font-berkshire mb-20">
+            <div className="bg-secondary p-12 rounded-lg mb-8">
+              <h2 className="text-3xl font-bold text-primary mb-6">Our Story</h2>
+              <p className="text-lg text-primary text-opacity-70 mb-4 leading-relaxed">
+                Founded with a vision to transform how luxury properties are presented, Cinematic Media
+                combines artistic excellence with technical precision. We believed that premium properties
+                deserved premium visual storytelling.
+              </p>
+              <p className="text-lg text-primary text-opacity-70 leading-relaxed">
+                Today, we're trusted by Kenya's leading real estate brands to capture the essence of their most
+                prestigious listings. Every project is a celebration of architectural beauty and luxury living.
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
-            {team.map((member, idx) => (
-              <div key={idx} className="group">
-                <div className="relative overflow-hidden rounded-3xl mb-8 aspect-[4/5] bg-neutral-200">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                  />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                    <div className="flex gap-4 mb-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      {member.socials?.linkedin && (
-                        <a href={member.socials.linkedin} className="text-white hover:text-accent"><Linkedin size={18} /></a>
-                      )}
-                      {member.socials?.instagram && (
-                        <a href={member.socials.instagram} className="text-white hover:text-accent"><Instagram size={18} /></a>
-                      )}
-                    </div>
-                    <p className="text-white/80 text-sm italic font-light leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                      {member.bio}
-                    </p>
+          {/* Mission & Vision */}
+          <div className="font-berkshire grid md:grid-cols-2 gap-8 mb-20">
+            <div className="bg-primary text-white p-12 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+              <p className="text-accent leading-relaxed">
+                To provide exceptional cinematic media services that elevate luxury real estate listings,
+                helping agents and developers connect with qualified buyers through compelling visual narratives.
+              </p>
+            </div>
+
+            <div className="bg-accent text-white p-12 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+              <p className="font-playfair leading-relaxed">
+                To be the preferred choice for premium real estate media in East Africa, setting the standard for
+                cinematic excellence and innovation in property presentation.
+              </p>
+            </div>
+          </div>
+
+          {/* Values */}
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold text-primary mb-12 text-center">Our Values</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {values.map((value, idx) => (
+                <div
+                  key={idx}
+                  className="flex gap-4 p-6 bg-secondary rounded-lg hover:border-accent border-2 border-transparent transition-all"
+                >
+                  <Check className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">
+                      {value.title}
+                    </h4>
+                    <p className="text-primary text-opacity-70">{value.description}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+          <div className="mb-20">
+  <h2 className="text-3xl font-bold text-primary mb-12 text-center">Meet the Team</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    {team.map((member, idx) => (
+      <div key={idx} className="group text-center">
+        {/* Image Container */}
+        <div className="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5] bg-secondary shadow-lg">
+          <img 
+            src={member.image} 
+            alt={member.name}
+            className="object-cover w-full h-full grayscale group-hover:grayscale-0 group-active:grayscale-0 sm:group-hover:scale-105 transition-all duration-500"
+          />
+          
+          {/* Reveal Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent 
+                          opacity-0 group-hover:opacity-100 group-active:opacity-100 
+                          transition-all duration-300 flex flex-col justify-end p-6">
+            
+            {/* Social Icons - Added safety checks */}
+            <div className="flex gap-4 mb-4 transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 delay-75">
+              {member.socials?.linkedin && (
+                <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent transition-colors">
+                  <Linkedin size={20} />
+                </a>
+              )}
+              {member.socials?.twitter && (
+                <a href={member.socials.twitter} target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent transition-colors">
+                  <Twitter size={20} />
+                </a>
+              )}
+              {member.socials?.instagram && (
+                <a href={member.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent transition-colors">
+                  <Instagram size={20} />
+                </a>
+              )}
+            </div>
 
-                <div className="text-center">
-                  <h4 className="font-playfair text-2xl text-primary mb-1">{member.name}</h4>
-                  <p className="text-accent text-[10px] uppercase tracking-[0.2em] font-bold">{member.role}</p>
-                </div>
-              </div>
-            ))}
+            <p className="text-white text-left text-sm italic leading-relaxed transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500">
+              {member.bio}
+            </p>
           </div>
         </div>
-      </section>
 
+        {/* Info */}
+        <h4 className="font-berkshire text-xl font-bold text-primary lowercase">{member.name}</h4>
+        <p className="font-berkshire text-accent font-medium uppercase text-xs tracking-widest">{member.role}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+        </div>
+      </div>
       <Footer />
     </main>
   )

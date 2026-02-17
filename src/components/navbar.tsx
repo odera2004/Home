@@ -9,7 +9,9 @@ export function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setHasScrolled(window.scrollY > 20)
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 10)
+    }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -18,65 +20,81 @@ export function Navbar() {
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
+    { label: 'Booking', href: '/booking' },
     { label: 'Contact', href: '/contact' },
   ]
 
   return (
-    <>
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        hasScrolled ? 'bg-white/90 backdrop-blur-lg py-4 shadow-md' : 'bg-transparent py-7'
-      }`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
-          
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-border transition-shadow duration-300 ${hasScrolled ? 'shadow-lg' : ''}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="font-playfair text-2xl font-bold tracking-tighter text-primary">
-            NAIRES<span className="text-accent italic">.</span>
+          <Link href="/" className="font-playfair text-2xl font-bold text-primary tracking-tight">
+            NAIRES MEDIA
           </Link>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="text-[11px] uppercase tracking-[0.2em] font-bold text-primary/80 hover:text-accent transition-colors">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.slice(1).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-primary hover:text-accent transition-colors"
+              >
                 {item.label}
               </Link>
             ))}
-            <Link 
-              href="/booking" 
-              className="px-6 py-2.5 bg-primary text-white text-[11px] uppercase tracking-[0.2em] font-bold rounded-full hover:bg-accent transition-all shadow-lg shadow-primary/10"
-            >
-              Book Session
-            </Link>
           </div>
 
-          {/* Mobile Toggle */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-primary p-2">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
+          {/* CTA Button and Mobile Menu */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/booking"
+              className="hidden sm:inline-block px-6 py-2 bg-primary text-white text-sm font-semibold rounded hover:bg-opacity-90 transition-all"
+            >
+              Book Now
+            </Link>
 
-      {/* Mobile Menu Overlay - FIXED Logic */}
-      <div className={`fixed inset-0 z-[90] bg-white transition-all duration-500 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 ${
-        isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-      }`}>
-        {navItems.map((item) => (
-          <Link 
-            key={item.href} 
-            href={item.href} 
-            onClick={() => setIsOpen(false)} 
-            className="text-4xl font-playfair text-primary"
-          >
-            {item.label}
-          </Link>
-        ))}
-        <Link 
-          href="/booking" 
-          onClick={() => setIsOpen(false)} 
-          className="mt-4 px-10 py-4 bg-primary text-white text-xs uppercase tracking-widest font-bold rounded-full"
-        >
-          Book Session
-        </Link>
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? (
+                <X className="w-6 h-6 text-primary" />
+              ) : (
+                <Menu className="w-6 h-6 text-primary" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden bg-white border-t border-border">
+            <div className="px-4 py-4 space-y-3">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block text-sm font-medium text-primary hover:text-accent transition-colors py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link
+                href="/booking"
+                className="block w-full px-6 py-2 bg-primary text-white text-sm font-semibold rounded text-center hover:bg-opacity-90 transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                Book Now
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
-    </>
+    </nav>
   )
 }

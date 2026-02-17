@@ -1,113 +1,308 @@
 'use client'
 
-import React, { useState } from "react"
+import React from "react"
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Instagram, Send, MapPin, Mail, Phone } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Instagram } from 'lucide-react'
+import { useState } from 'react'
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
-  const [loading, setLoading] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '', // Added phone number field
+    subject: '',
+    message: '',
+  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    // Simulate API call
-    setTimeout(() => {
+    setError(null)
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '88644973-0e22-47c1-a8a2-845971f37b51',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone, // Added phone to API
+          subject: formData.subject,
+          message: formData.message,
+          from_name: 'NAIRES MEDIA',
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setSubmitted(true)
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+        setTimeout(() => {
+          setSubmitted(false)
+        }, 3000)
+      } else {
+        throw new Error(data.message || 'Failed to send message.')
+      }
+    } catch (err) {
+      setError('Failed to send message. Please try again.')
+    } finally {
       setLoading(false)
-      setSubmitted(true)
-    }, 1500)
+    }
   }
 
   return (
-    <main className="bg-[#FAF9F6] min-h-screen">
+    <main className="bg-white">
       <Navbar />
-      <div className="pt-48 pb-32 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          
-          <div className="grid lg:grid-cols-2 gap-24 items-start">
-            
-            {/* Left Side: Editorial Content */}
+      <div className="pt-32 pb-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="font-playfair text-5xl sm:text-6xl font-bold text-primary mb-4">
+              Get In Touch
+            </h1>
+            <p className="font-playfair text-xl text-primary text-opacity-60">
+              Have a question? We'd love to hear from you.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 mb-20">
+            {/* Contact Info */}
             <div>
-              <span className="text-accent font-medium tracking-[0.4em] uppercase text-xs mb-4 block">Inquiries</span>
-              <h1 className="font-playfair text-6xl md:text-8xl font-light text-primary mb-12">Let’s <br/><span className="italic text-accent">Connect.</span></h1>
-              
-              <div className="space-y-12">
-                <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-neutral-100 shrink-0">
-                    <Mail size={18} className="text-accent"/>
+              <h2 className="text-3xl font-bold text-primary mb-8">Contact Information</h2>
+
+              <div className="space-y-8">
+                {/* Email */}
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest font-bold text-primary/40 mb-1">Email us</p>
-                    <p className="text-xl font-playfair text-primary">hello@naires.media</p>
+                    <h3 className="font-semibold text-primary mb-1">Email</h3>
+                    <a
+                      href="mailto:hello@cinematic.media"
+                      className="text-accent hover:underline"
+                    >
+                      hello@NAIRES.media
+                    </a>
                   </div>
                 </div>
 
-                <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-neutral-100 shrink-0">
-                    <MapPin size={18} className="text-accent"/>
+                {/* Phone */}
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest font-bold text-primary/40 mb-1">Studio</p>
-                    <p className="text-xl font-playfair text-primary">Westlands, Nairobi</p>
+                    <h3 className="font-semibold text-primary mb-1">Phone</h3>
+                    <a
+                      href="tel:+254712345678"
+                      className="text-accent hover:underline"
+                    >
+                      +254 112 973 302
+                    </a>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-20 pt-10 border-t border-neutral-200">
-                <p className="text-xs text-primary/40 uppercase tracking-widest mb-6 font-bold">Follow Our Work</p>
-                <a href="#" className="inline-flex items-center gap-3 text-primary hover:text-accent transition-colors">
-                  <Instagram size={20} />
-                  <span className="font-playfair text-lg">@naires.media</span>
-                </a>
+                {/* Location */}
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1">Location</h3>
+                    <p className="text-primary text-opacity-70">
+                      Westlands, Nairobi<br />
+                      Kenya
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1">Hours</h3>
+                    <p className="text-primary text-opacity-70">
+                      Mon - Fri: 9am - 6pm EAT<br />
+                      Sat - Sun: By appointment
+                    </p>
+                  </div>
+                </div>
+
+                {/* Social */}
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
+                      <Instagram className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1">Follow Us</h3>
+                    <a
+                      href="https://instagram.com"
+                      className="text-accent hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      @cinematic.media
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Side: The Form */}
-            <div className="bg-white p-8 md:p-16 rounded-[2.5rem] shadow-xl shadow-primary/[0.02] border border-neutral-100">
+            {/* Contact Form */}
+            <div className="bg-secondary rounded-lg p-8 sm:p-12">
+              <h2 className="font-playfair text-3xl font-bold text-primary mb-8">Send Us a Message</h2>
+
               {submitted ? (
-                <div className="text-center py-20 animate-fadeIn">
-                  <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 text-accent">
-                    <Send size={32} />
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
                   </div>
-                  <h3 className="font-playfair text-3xl text-primary mb-2">Message Sent</h3>
-                  <p className="text-primary/50 text-sm">We'll get back to you within 24 hours.</p>
+                  <h3 className="text-2xl font-bold text-primary mb-2">
+                    Message Sent!
+                  </h3>
+                  <p className="text-primary text-opacity-70">
+                    Thank you for reaching out. We'll get back to you shortly.
+                  </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-12">
-                  <div className="group relative">
-                    <input 
-                      type="text" required placeholder="Your Name"
-                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-all font-playfair text-lg placeholder:text-neutral-300"
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                <form onSubmit={handleSubmit} className="space-y-6 font-typewriter">
+                  {/* Name */}
+                  <div>
+                    <label className="block text-sm font-semibold text-primary mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="Your name "
+                      disabled={loading}
                     />
                   </div>
-                  <div className="group relative">
-                    <input 
-                      type="email" required placeholder="Email Address"
-                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-all font-playfair text-lg placeholder:text-neutral-300"
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+
+                  {/* Email */}
+                  <div>
+                    <label className="block text-sm font-semibold text-primary mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="Email"
+                      disabled={loading}
                     />
                   </div>
-                  <div className="group relative">
-                    <textarea 
-                      required rows={4} placeholder="How can we help?"
-                      className="w-full bg-transparent border-b border-neutral-200 py-4 outline-none focus:border-accent transition-all font-playfair text-lg placeholder:text-neutral-300 resize-none"
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+
+                  {/* Phone Number */}
+                  <div>
+                    <label className="block text-sm font-semibold text-primary mb-2">
+                      Phone Number (Optional)
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="+254 712 345 678"
+                      disabled={loading}
                     />
                   </div>
-                  
-                  <button 
-                    type="submit" disabled={loading}
-                    className="w-full py-5 bg-primary text-white text-[11px] uppercase tracking-[0.3em] font-bold rounded-full hover:bg-accent transition-all shadow-xl shadow-primary/20"
+
+                  {/* Subject */}
+                  <div>
+                    <label className="block text-sm font-semibold text-primary mb-2">
+                      Subject *
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="How can we help?"
+                      disabled={loading}
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label className="block text-sm font-semibold text-primary mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="w-full px-4 py-3 border-2 border-border rounded-lg focus:border-accent focus:outline-none transition-colors bg-white disabled:opacity-50"
+                      placeholder="Your message here..."
+                      disabled={loading}
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               )}
             </div>
-
           </div>
         </div>
       </div>
