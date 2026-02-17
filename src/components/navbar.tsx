@@ -25,11 +25,11 @@ export function Navbar() {
   ]
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-border transition-shadow duration-300 ${hasScrolled ? 'shadow-lg' : ''}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10 transition-shadow duration-300 ${hasScrolled ? 'shadow-lg shadow-black/50' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="font-playfair text-2xl font-bold text-primary tracking-tight">
+          <Link href="/" className="font-playfair text-2xl font-bold text-white tracking-tight">
             NAIRES MEDIA
           </Link>
 
@@ -39,7 +39,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-primary hover:text-accent transition-colors"
+                className="text-sm font-medium text-white/80 hover:text-white transition-colors"
               >
                 {item.label}
               </Link>
@@ -50,7 +50,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <Link
               href="/booking"
-              className="hidden sm:inline-block px-6 py-2 bg-primary text-white text-sm font-semibold rounded hover:bg-opacity-90 transition-all"
+              className="hidden sm:inline-block px-6 py-2 bg-white text-black text-sm font-semibold rounded hover:bg-white/90 transition-all"
             >
               Book Now
             </Link>
@@ -58,13 +58,13 @@ export function Navbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors"
+              className="md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <X className="w-6 h-6 text-primary" />
+                <X className="w-6 h-6 text-white" />
               ) : (
-                <Menu className="w-6 h-6 text-primary" />
+                <Menu className="w-6 h-6 text-white" />
               )}
             </button>
           </div>
@@ -72,13 +72,13 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-white border-t border-border">
+          <div className="md:hidden bg-black border-t border-white/10">
             <div className="px-4 py-4 space-y-3">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block text-sm font-medium text-primary hover:text-accent transition-colors py-2"
+                  className="block text-sm font-medium text-white/80 hover:text-white transition-colors py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -86,7 +86,7 @@ export function Navbar() {
               ))}
               <Link
                 href="/booking"
-                className="block w-full px-6 py-2 bg-primary text-white text-sm font-semibold rounded text-center hover:bg-opacity-90 transition-all"
+                className="block w-full px-6 py-2 bg-white text-black text-sm font-semibold rounded text-center hover:bg-white/90 transition-all"
                 onClick={() => setIsOpen(false)}
               >
                 Book Now
