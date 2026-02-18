@@ -13,117 +13,77 @@ export function Hero() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const goldGradient = {
+    background: 'linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 70%, #fbf5b7 85%, #aa771c 100%)',
+    color: '#1a0f00',
+  }
+
   return (
-    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax */}
+    <section className="relative w-full h-[100svh] flex items-center justify-center overflow-hidden bg-black">
+      {/* Background Image - Explicit lower Z-index */}
       <div
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full z-0"
         style={{
-          transform: `translateY(${scrollY * 0.4}px)`,
+          transform: `translateY(${scrollY * 0.3}px)`,
           willChange: 'transform',
         }}
       >
         <img
           src="https://i.pinimg.com/1200x/62/e8/06/62e806f8470cf0341f9360e6d2e67bfd.jpg"
-          alt="Background"
+          alt="Luxury Real Estate Background"
           className="w-full h-full object-cover object-center scale-110"
           loading="eager"
         />
+        {/* Overlays inside the background div to ensure they stay behind text */}
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-10" />
       </div>
 
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Content - High Z-index and relative positioning */}
+      <div className="relative z-30 w-full px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          
+          <span className="inline-block text-accent font-medium tracking-[0.3em] uppercase text-[10px] mb-4 animate-fadeIn">
+            Naires Media Group
+          </span>
 
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40" />
-
-      {/* Content - Perfectly centered with consistent width */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          {/* Heading - Main message */}
-          <h1 className="font-playfair text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-4 sm:mb-5 md:mb-6 leading-tight animate-fadeInUp animation-delay-200">
-            Visuals that Attract Buyers.
-            <br className="hidden xs:block" />
-            Websites That Convert Them.
+          <h1 className="font-playfair text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-bold mb-6 leading-[1.1] drop-shadow-2xl">
+            Visuals that <span className="italic text-accent">Attract.</span><br/>
+            Websites that <span className="italic text-accent">Convert.</span>
           </h1>
 
-          {/* Paragraph - Description */}
-          <p className="font-playfair text-white/80 mb-8 sm:mb-9 md:mb-10 leading-relaxed text-sm sm:text-base md:text-lg px-4 sm:px-6 animate-fadeInUp animation-delay-300 max-w-2xl mx-auto">
-            The all-in-one digital partner for Kenya's developers and agents. We combine
-            cinematic media with high-performance websites to sell your listings faster.
+          <p className="font-playfair text-white/90 mb-10 leading-relaxed text-base md:text-xl max-w-2xl mx-auto font-light">
+            The digital partner for Kenya&apos;s elite developers. We combine
+            cinematic media with high-performance tech to sell listings faster.
           </p>
 
-          {/* Buttons - Side by side with consistent sizing */}
-          <div className="flex flex-row gap-3 sm:gap-4 justify-center items-center animate-fadeInUp animation-delay-400 px-4 max-w-md mx-auto">
+          {/* Buttons - Stacked on tiny mobile, side-by-side on sm+ */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
             <Link
               href="/booking"
-              className="flex-1 rounded-full px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold transition-all flex items-center justify-center gap-2 group whitespace-nowrap"
-              style={{
-                background: 'linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 70%, #fbf5b7 85%, #aa771c 100%)',
-                color: '#1a0f00',
-                boxShadow: '0 4px 24px rgba(184, 134, 11, 0.5)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLAnchorElement
-                el.style.filter = 'brightness(1.1)'
-                el.style.boxShadow = '0 6px 32px rgba(184, 134, 11, 0.7)'
-                el.style.transform = 'translateY(-1px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLAnchorElement
-                el.style.filter = 'brightness(1)'
-                el.style.boxShadow = '0 4px 24px rgba(184, 134, 11, 0.5)'
-                el.style.transform = 'translateY(0)'
-              }}
+              className="w-full sm:w-auto rounded-full px-8 py-4 text-xs uppercase tracking-widest font-bold transition-all flex items-center justify-center gap-2 group shadow-xl shadow-black/40"
+              style={goldGradient}
             >
-              <span>Book a Session</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+              Book Session
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
 
             <Link
               href="/about"
-              className="flex-1 rounded-full px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold transition-all flex items-center justify-center gap-2 group whitespace-nowrap"
-              style={{
-                background: 'linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 70%, #fbf5b7 85%, #aa771c 100%)',
-                color: '#1a0f00',
-                boxShadow: '0 4px 24px rgba(184, 134, 11, 0.5)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLAnchorElement
-                el.style.filter = 'brightness(1.1)'
-                el.style.boxShadow = '0 6px 32px rgba(184, 134, 11, 0.7)'
-                el.style.transform = 'translateY(-1px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLAnchorElement
-                el.style.filter = 'brightness(1)'
-                el.style.boxShadow = '0 4px 24px rgba(184, 134, 11, 0.5)'
-                el.style.transform = 'translateY(0)'
-              }}
+              className="w-full sm:w-auto rounded-full px-8 py-4 text-xs uppercase tracking-widest font-bold transition-all flex items-center justify-center gap-2 border border-white/30 text-white backdrop-blur-sm hover:bg-white hover:text-black"
             >
-              <span>See Portfolio</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+              See Portfolio
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="animate-bounce">
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 text-white/60"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
+      {/* Scroll Indicator - Hidden on very small screens to save space */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 hidden sm:block">
+        <div className="flex flex-col items-center gap-2 opacity-50">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white">Scroll</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
         </div>
       </div>
     </section>
