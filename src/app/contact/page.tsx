@@ -101,7 +101,7 @@ export default function ContactPage() {
                       href="mailto:hello@cinematic.media"
                       className="text-accent hover:underline"
                     >
-                      hello@NAIRES.media
+                      info@nairesmedia.com
                     </a>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      @cinematic.media
+                      info@nairesmedia.com
                     </a>
                   </div>
                 </div>

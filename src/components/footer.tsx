@@ -48,7 +48,7 @@ export function Footer() {
                 className="flex items-center gap-2 text-white hover:text-accent transition-colors text-sm"
               >
                 <Mail className="w-4 h-4" />
-                @Naires.media
+                info@nairesmedia.com
               </a>
               <a
                 href="tel:+254712345678"

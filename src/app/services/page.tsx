@@ -1,193 +1,173 @@
+'use client'
+
+import React from 'react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Video, Camera, Layout, Sparkles, Clock, Award } from 'lucide-react'
-
-export const metadata = {
-  title: 'Services | Cinematic Media',
-  description: 'Explore our professional media services for luxury real estate photography, videography, and drone coverage.',
-}
-
-const detailedServices = [
-  {
-    icon: Video,
-    title: 'Cinematic Videography',
-    price: 'From $1,500',
-    description: 'Professional video walkthroughs with cinematic camera movements, color grading, and sound design.',
-    features: [
-      '4K/8K video production',
-      'Drone footage integration',
-      'Professional color grading',
-      '30-60 second highlight reel included',
-      'Music & sound design',
-    ],
-  },
-  {
-    icon: Camera,
-    title: 'Premium Photography',
-    price: 'From $800',
-    description: 'High-resolution interior and exterior photography with professional lighting and composition.',
-    features: [
-      '100+ high-resolution images',
-      'Professional lighting setup',
-      'Virtual staging options',
-      'Day and twilight shots',
-      'Raw files included',
-    ],
-  },
-  {
-    icon: Layout,
-    title: 'Custom Web Design',
-    price: 'From $2,500',
-    description: 'High-performance, bespoke digital experiences tailored to your brand identity and user goals.',
-    features: [
-      'Responsive mobile-first layout',
-      'SEO-optimized architecture',
-      'Interactive UI/UX components',
-      'Custom CMS integration',
-      'Accessibility (WCAG) compliance',
-    ],
-  },
-  {
-    icon: Sparkles,
-    title: 'Social Media Content',
-    price: 'From $1,000',
-    description: 'Dynamic short-form content optimized for Instagram, TikTok, and other platforms.',
-    features: [
-      '20-30 short clips',
-      'Trending audio & effects',
-      'Captions & text overlays',
-      'Multiple format exports',
-      'Month of posting guidance',
-    ],
-  },
-]
-
-const addOns = [
-  { name: 'Virtual Staging', description: 'AI-powered room staging', price: '$300-500' },
-  { name: 'Matterport 3D Tour', description: 'Interactive virtual walkthrough', price: '$400' },
-  { name: 'Twilight Photography', description: 'Evening exterior shots', price: '$200' },
-  { name: 'Video Editing Package', description: 'Additional editing/revisions', price: '$500' },
-  { name: 'Aerial Photography Only', description: 'Still images from drone', price: '$300' },
-  { name: 'Rush Turnaround', description: '48-hour delivery', price: '+$200' },
-]
+import { Video, Camera, Layout, Sparkles, Clock, Award, ChevronRight, Zap } from 'lucide-react'
+import Link from 'next/link'
 
 export default function ServicesPage() {
+  const detailedServices = [
+    {
+      icon: Video,
+      title: 'Cinematic Videography',
+      price: 'From $1,500',
+      description: 'Ultra-HD walkthroughs with rhythmic editing, professional color grading, and licensed sound design.',
+      features: ['4K/8K HDR Production', 'Drone Integration', 'Social Media Cuts', 'Sound Design'],
+    },
+    {
+      icon: Camera,
+      title: 'Premium Photography',
+      price: 'From $800',
+      description: 'Magazine-quality interior and exterior captures using advanced bracketed lighting techniques.',
+      features: ['100+ High-Res Images', 'Twilight Hour Shots', 'Virtual Staging', 'Advanced Retouching'],
+    },
+    {
+      icon: Layout,
+      title: 'Digital Branding',
+      price: 'From $2,500',
+      description: 'Bespoke, high-performance web experiences designed to showcase listings with immersive UI.',
+      features: ['Mobile-First UX', 'SEO Optimization', 'Custom CMS', 'Interactive Tours'],
+    },
+    {
+      icon: Sparkles,
+      title: 'Social Engine',
+      price: 'From $1,000',
+      description: 'Short-form content kits optimized for high engagement on Instagram Reels and TikTok.',
+      features: ['20-30 Short Clips', 'Trending Aesthetics', 'Captions & Graphics', 'Strategy Guide'],
+    },
+  ]
+
+  const addOns = [
+    { name: 'Virtual Staging', price: '$300+' },
+    { name: 'Matterport 3D', price: '$400' },
+    { name: 'Twilight Session', price: '$200' },
+    { name: '48hr Rush', price: '$200' },
+    { name: 'Aerial Stills', price: '$300' },
+    { name: 'Extra Revisions', price: '$150' },
+  ]
+
   return (
-    <main className="bg-white">
+    <main className="bg-[#FAF9F6] min-h-screen">
       <Navbar />
-      <div className="pt-32">
-        {/* Hero */}
-        <div className="bg-secondary py-16 px-4 sm:px-6 lg:px-8 mb-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-playfair text-5xl sm:text-6xl font-bold text-primary mb-6">
-              Our Services
-            </h1>
-            <p className="font-playfair text-xl text-primary text-opacity-60">
-              Services Built for Conversion
-            </p>
-          </div>
-        </div>
 
-        {/* Main Services */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            {detailedServices.map((service, idx) => {
-              const Icon = service.icon
-              return (
-                <div
-                  key={idx}
-                  className="border-2 border-border rounded-lg p-8 hover:border-accent transition-all hover:shadow-lg"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <Icon className="w-10 h-10 text-accent" />
-                    <span className="text-lg font-bold text-accent">{service.price}</span>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-primary mb-2">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-primary text-opacity-70 mb-6">
-                    {service.description}
-                  </p>
-
-                  <div className="space-y-3">
-                    {service.features.map((feature, fidx) => (
-                      <div key={fidx} className="flex gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0"></div>
-                        <span className="text-primary text-opacity-80">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Add-ons */}
-          <div className="bg-secondary rounded-lg p-12 mb-20">
-            <h2 className="text-3xl font-bold text-primary mb-8 text-center">
-              Available Add-ons
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {addOns.map((addon, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-lg border border-border">
-                  <h4 className="font-semibold text-primary mb-1">{addon.name}</h4>
-                  <p className="text-sm text-primary text-opacity-60 mb-3">
-                    {addon.description}
-                  </p>
-                  <p className="font-bold text-accent">{addon.price}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Why Choose Us */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold text-primary mb-12 text-center">
-              Why Choose Cinematic
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-secondary p-8 rounded-lg">
-                <Award className="w-10 h-10 text-accent mb-4" />
-                <h3 className="text-xl font-bold text-primary mb-3">Award-Winning Quality</h3>
-                <p className="text-primary text-opacity-70">
-                  Professional-grade equipment and techniques used by top production companies.
-                </p>
-              </div>
-              <div className="bg-secondary p-8 rounded-lg">
-                <Clock className="w-10 h-10 text-accent mb-4" />
-                <h3 className="text-xl font-bold text-primary mb-3">Fast Turnaround</h3>
-                <p className="text-primary text-opacity-70">
-                  Typically 5-7 business days, with rush options available.
-                </p>
-              </div>
-              <div className="bg-secondary p-8 rounded-lg">
-                <Sparkles className="w-10 h-10 text-accent mb-4" />
-                <h3 className="text-xl font-bold text-primary mb-3">Full Creative Control</h3>
-                <p className="text-primary text-opacity-70">
-                  Unlimited revisions until you're completely satisfied.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="bg-primary text-white rounded-lg p-12 text-center">
-            <h2 className="font-playfair text-3xl font-bold mb-4">Ready to Elevate Your Listings?</h2>
-            <p className="font-playfair text-accent mb-8 max-w-2xl mx-auto">
-              Let's discuss which services are perfect for your properties.
-            </p>
-            <a
-              href="/booking"
-              className="rounded-full inline-block px-8 py-3 bg-accent text-primary font-semibold rounded hover:bg-opacity-90 transition-all"
-            >
-              Request a Quote
-            </a>
-          </div>
+      {/* Hero Section */}
+      <div className="pt-48 pb-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <span className="text-accent font-medium tracking-[0.4em] uppercase text-[10px] mb-4 block animate-fadeIn">
+            Production Suite
+          </span>
+          <h1 className="font-playfair text-6xl md:text-8xl font-light text-primary mb-8 leading-tight">
+            Our <span className="italic">Services.</span>
+          </h1>
+          <p className="font-playfair text-xl text-primary/50 max-w-xl font-light leading-relaxed">
+            Crafting visual narratives that turn properties into high-value digital assets.
+          </p>
         </div>
       </div>
 
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-32 relative z-10">
+        
+        {/* Main Services Grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-32">
+          {detailedServices.map((service, idx) => {
+            const Icon = service.icon
+            return (
+              <div 
+                key={idx} 
+                className="bg-white group p-10 md:p-14 rounded-[2.5rem] shadow-sm border border-neutral-100 hover:shadow-xl hover:shadow-primary/[0.03] transition-all duration-500"
+              >
+                <div className="flex justify-between items-start mb-12">
+                  <div className="w-16 h-16 bg-[#FAF9F6] rounded-2xl flex items-center justify-center group-hover:bg-primary transition-colors duration-500">
+                    <Icon className="w-7 h-7 text-accent group-hover:text-white transition-colors" />
+                  </div>
+                  <span className="font-playfair text-xl text-primary/40 italic">{service.price}</span>
+                </div>
+
+                <h3 className="font-playfair text-3xl text-primary mb-4">{service.title}</h3>
+                <p className="text-primary/60 font-light leading-relaxed mb-10 text-lg">
+                  {service.description}
+                </p>
+
+                <div className="space-y-4 mb-10">
+                  {service.features.map((feature, fidx) => (
+                    <div key={fidx} className="flex items-center gap-3 text-xs uppercase tracking-widest font-bold text-primary/40">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                <Link 
+                  href="/booking" 
+                  className="inline-flex items-center gap-2 text-primary font-bold text-[10px] uppercase tracking-widest group-hover:text-accent transition-colors"
+                >
+                  Book this service <ChevronRight size={14} />
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Add-ons - Minimalist Horizontal Scroll on Mobile */}
+        <div className="mb-32">
+          <h2 className="font-playfair text-4xl text-primary mb-12 text-center">A La Carte <span className="italic">Add-ons</span></h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {addOns.map((addon, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-2xl border border-neutral-100 text-center hover:border-accent transition-colors">
+                <p className="text-[10px] uppercase tracking-tighter font-bold text-primary/40 mb-2">{addon.name}</p>
+                <p className="font-playfair text-lg text-primary">{addon.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Why Choose Us - Editorial Layout */}
+        <div className="grid lg:grid-cols-3 gap-12 mb-32">
+          <div className="p-10 bg-primary rounded-[2.5rem] text-white">
+            <Award className="w-8 h-8 text-accent mb-6" />
+            <h3 className="font-playfair text-2xl mb-4">Elite Quality</h3>
+            <p className="text-white/60 text-sm leading-relaxed font-light">
+              Utilizing RED cinema cameras and high-end glass to ensure every frame is gallery-ready.
+            </p>
+          </div>
+          <div className="p-10 bg-white border border-neutral-100 rounded-[2.5rem] text-primary">
+            <Zap className="w-8 h-8 text-accent mb-6" />
+            <h3 className="font-playfair text-2xl mb-4">48hr Delivery</h3>
+            <p className="text-primary/60 text-sm leading-relaxed font-light">
+              Speed without compromise. We deliver fully edited assets within 2 business days.
+            </p>
+          </div>
+          <div className="p-10 bg-white border border-neutral-100 rounded-[2.5rem] text-primary">
+            <Clock className="w-8 h-8 text-accent mb-6" />
+            <h3 className="font-playfair text-2xl mb-4">Live Scheduling</h3>
+            <p className="text-primary/60 text-sm leading-relaxed font-light">
+              Our digital booking system allows you to secure slots instantly across Nairobi.
+            </p>
+          </div>
+        </div>
+
+        {/* Dynamic CTA */}
+        <div className="relative overflow-hidden bg-white rounded-[3rem] p-12 md:p-24 text-center border border-neutral-100">
+          <div className="relative z-10">
+            <h2 className="font-playfair text-4xl md:text-6xl text-primary mb-6">Ready to <span className="italic text-accent">Elevate?</span></h2>
+            <p className="text-primary/50 mb-12 max-w-lg mx-auto font-light">
+              Join the elite agencies using Naires Media to capture, showcase, and sell.
+            </p>
+            <Link
+              href="/booking"
+              className="inline-block px-12 py-5 bg-primary text-white text-[11px] uppercase tracking-[0.3em] font-bold rounded-full hover:bg-accent transition-all shadow-xl shadow-primary/20"
+            >
+              Start Your Project
+            </Link>
+          </div>
+          {/* Decorative watermark */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] font-playfair font-bold text-primary/[0.01] select-none pointer-events-none">
+            NAIRES
+          </div>
+        </div>
+
+      </div>
       <Footer />
     </main>
   )

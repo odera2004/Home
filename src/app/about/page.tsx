@@ -38,7 +38,7 @@ export default function AboutPage() {
         <div className="mb-32">
           <div className="bg-white p-12 md:p-20 rounded-[2.5rem] shadow-sm border border-neutral-100 relative overflow-hidden">
             <h2 className="font-playfair text-4xl font-bold text-primary mb-8">Our Story</h2>
-            <div className="grid md:grid-cols-2 gap-12 text-primary/70 text-lg leading-relaxed font-light">
+            <div className="font-playfair grid md:grid-cols-2 gap-12 text-primary/70 text-lg leading-relaxed font-light">
               <p>
                 Founded with a vision to transform how luxury properties are presented, Cinematic Media
                 combines artistic excellence with technical precision. We believed that premium properties

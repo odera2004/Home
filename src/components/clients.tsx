@@ -84,7 +84,7 @@ export function Clients() {
                     className="group flex items-center gap-3 text-primary font-medium hover:text-amber-600 transition-colors"
                   >
                     <span className="w-8 h-[1px] bg-primary group-hover:w-12 group-hover:bg-amber-600 transition-all" />
-                    Follow @four.horsemen.media
+                    Follow info@nairesmedia.com
                   </a>
                   <a
                     href="mailto:contact@fourhorsemenmedia.com"
