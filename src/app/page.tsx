@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Clients } from '@/components/clients'
 import { Services } from '@/components/services'
 import { Testimonials } from '@/components/testimonials'
