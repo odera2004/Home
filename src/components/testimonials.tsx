@@ -13,17 +13,17 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: 'Michael Chen',
+    name: 'Qui Esther',
     title: 'Property Developer',
-    company: 'Prime Developments',
+    company: 'Roots Motel Sagana',
     content:
       'Professional, efficient, and incredibly creative. They understood our vision and delivered beyond expectations.',
     rating: 5,
   },
   {
-    name: 'Victoria Okonkwo',
+    name: 'Joel',
     title: 'Marketing Director',
-    company: 'Elite Estates Group',
+    company: 'Minah Heights',
     content:
       'Their drone footage and cinematic videos are game-changers. Buyers are more engaged and decisions happen faster.',
     rating: 5,

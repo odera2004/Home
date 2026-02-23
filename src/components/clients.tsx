@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { useScrollAnimation } from '@/hooks/use-scroll-animation'
 
 const clientLogos = [
-  { initials: 'LH', name: 'Luxury Homes' },
+  { initials: 'MH', name: 'Minah Heights' },
   { initials: 'PP', name: 'Prime Properties' },
-  { initials: 'EG', name: 'Elite Group' },
+  { initials: 'RMS', name: 'Roots Motel Sagana' },
 ]
 
 export function Clients() {
@@ -27,7 +27,7 @@ export function Clients() {
               Trusted by Leading Real Estate Brands
             </h2>
 
-            <p className="font-playfair text-[#4A4A4A] text-lg max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-[#4A4A4A] text-lg max-w-2xl mx-auto font-light leading-relaxed">
               Developers and agents trust us to present their properties with
               precision, elegance, and performance-driven visuals.
             </p>
@@ -80,11 +80,11 @@ export function Clients() {
                 </p>
                 <div className="pt-4 space-y-4">
                   <a
-                    href="https://instagram.com/four.horsemen.media"
+                    href="https://www.instagram.com/nairesmedia?igsh=MTRuOHZlMnY5ZWFvaA%3D%3D&utm_source=qr"
                     className="group flex items-center gap-3 text-primary font-medium hover:text-amber-600 transition-colors"
                   >
                     <span className="w-8 h-[1px] bg-primary group-hover:w-12 group-hover:bg-amber-600 transition-all" />
-                    Follow info@nairesmedia.com
+                    Follow nairesmedia
                   </a>
                   <a
                     href="mailto:contact@fourhorsemenmedia.com"
@@ -122,7 +122,7 @@ export function Clients() {
               {/* Floating Stat/Label Card */}
               <div className="absolute -bottom-6 -right-6 md:right-10 bg-white p-6 rounded-xl shadow-xl border border-neutral-100 hidden md:block animate-bounce-slow">
                 <p className="text-amber-600 text-xs tracking-widest uppercase font-bold mb-1">Live Preview</p>
-                <p className="font-playfair italic text-primary text-lg">Cinematic 4K Quality</p>
+                <p className="font-playfair italic text-primary text-lg">AI Virtual Staging</p>
               </div>
             </div>
 

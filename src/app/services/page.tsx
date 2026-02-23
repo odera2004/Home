@@ -11,40 +11,31 @@ export default function ServicesPage() {
     {
       icon: Video,
       title: 'Cinematic Videography',
-      price: 'From $1,500',
+      price: 'From Ksh 50,000',
       description: 'Ultra-HD walkthroughs with rhythmic editing, professional color grading, and licensed sound design.',
-      features: ['4K/8K HDR Production', 'Drone Integration', 'Social Media Cuts', 'Sound Design'],
+      features: ['HDR Production', 'Drone Integration', 'Social Media Cuts', 'Sound Design'],
     },
     {
       icon: Camera,
       title: 'Premium Photography',
-      price: 'From $800',
+      price: 'From Ksh 10,000',
       description: 'Magazine-quality interior and exterior captures using advanced bracketed lighting techniques.',
-      features: ['100+ High-Res Images', 'Twilight Hour Shots', 'Virtual Staging', 'Advanced Retouching'],
+      features: ['20+ High-Res Images', 'Twilight Hour Shots', 'Virtual Staging', 'Advanced Retouching'],
     },
     {
       icon: Layout,
-      title: 'Digital Branding',
-      price: 'From $2,500',
+      title: 'Web design',
+      price: 'From Ksh 50,000',
       description: 'Bespoke, high-performance web experiences designed to showcase listings with immersive UI.',
-      features: ['Mobile-First UX', 'SEO Optimization', 'Custom CMS', 'Interactive Tours'],
-    },
-    {
-      icon: Sparkles,
-      title: 'Social Engine',
-      price: 'From $1,000',
-      description: 'Short-form content kits optimized for high engagement on Instagram Reels and TikTok.',
-      features: ['20-30 Short Clips', 'Trending Aesthetics', 'Captions & Graphics', 'Strategy Guide'],
+      features: ['Mobile-First UX', 'SEO Optimization', '360 View Intergration', 'Custom-designed 3+ Pages'],
     },
   ]
 
   const addOns = [
-    { name: 'Virtual Staging', price: '$300+' },
-    { name: 'Matterport 3D', price: '$400' },
-    { name: 'Twilight Session', price: '$200' },
-    { name: '48hr Rush', price: '$200' },
-    { name: 'Aerial Stills', price: '$300' },
-    { name: 'Extra Revisions', price: '$150' },
+    { name: 'AI Virtual Staging', price: 'Ksh 10,000' },
+    { name: '360 View', price: 'Ksh 10,000' },
+    { name: 'Aerial Shots', price: 'Ksh 15,000' },
+
   ]
 
   return (

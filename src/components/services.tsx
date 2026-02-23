@@ -10,18 +10,18 @@ const services = [
   },
   {
     icon: Camera,
-    title: 'Architectural Stills',
-    description: 'Precision-captured interior and exterior photography focusing on symmetry, light, and high-end finishes.',
+    title: 'Website Design',
+    description: 'Strategically designed real estate websites built to showcase developments, capture qualified inquiries, and convert visitors into serious buyers',
   },
   {
     icon: Zap, // Swapped Drone for Zap for a cleaner "Aerial" look
-    title: 'Aerial Perspective',
+    title: 'Aerial Shots',
     description: 'Advanced 4K drone maneuvers that contextualize the property within its environment and landscape.',
   },
   {
     icon: Sparkles,
-    title: 'Digital Storytelling',
-    description: 'High-impact, short-form narratives engineered for maximum engagement across premium social platforms.',
+    title: 'Premium Photography',
+    description: 'Professional real estate photography designed to showcase properties with clarity, depth, and visual appeal',
   },
 ]
 

@@ -51,7 +51,7 @@ const courier = Courier_Prime({
 })
 
 export const metadata: Metadata = {
-  title: "Cinematic Media | Luxury Real Estate Photography & Videography",
+  title: "Naires Media | Luxury Real Estate Photography & Videography",
   description:
     "Professional cinematic media services for luxury real estate. From Westlands to Kilimani — aerial drone footage, videography, photography, and social media content.",
 }

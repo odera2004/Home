@@ -29,7 +29,7 @@ export function Hero() {
         }}
       >
         <img
-          src="https://i.pinimg.com/1200x/62/e8/06/62e806f8470cf0341f9360e6d2e67bfd.jpg"
+          src="https://www.tomferry.com/wp-content/uploads/2024/02/AdobeStock_220757323.jpg"
           alt="Luxury Real Estate Background"
           className="w-full h-full object-cover object-center scale-110"
           loading="eager"
@@ -43,18 +43,15 @@ export function Hero() {
       <div className="relative z-30 w-full px-6">
         <div className="max-w-4xl mx-auto text-center">
           
-          <span className="inline-block text-accent font-medium tracking-[0.3em] uppercase text-[10px] mb-4 animate-fadeIn">
-            Naires Media Group
-          </span>
 
           <h1 className="font-playfair text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-bold mb-6 leading-[1.1] drop-shadow-2xl">
             Visuals that <span className="italic text-accent">Attract.</span><br/>
             Websites that <span className="italic text-accent">Convert.</span>
           </h1>
 
-          <p className="font-playfair text-white/90 mb-10 leading-relaxed text-base md:text-xl max-w-2xl mx-auto font-light">
+          <p className="text-white/90 mb-10 leading-relaxed text-base md:text-xl max-w-2xl mx-auto font-light">
             The digital partner for Kenya&apos;s elite developers. We combine
-            cinematic media with high-performance tech to sell listings faster.
+            cinematic media with high-performance websites to sell listings faster.
           </p>
 
           {/* Buttons - Stacked on tiny mobile, side-by-side on sm+ */}

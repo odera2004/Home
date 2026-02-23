@@ -24,7 +24,7 @@ export default function AboutPage() {
             Cinematic Excellence
           </span>
           <h1 className="font-playfair text-6xl md:text-7xl font-light text-primary mb-8 leading-tight">
-            About <span className="italic">Cinematic.</span>
+            About <span className="italic">Naires Media.</span>
           </h1>
           <p className="font-playfair text-xl text-primary/60 max-w-2xl mx-auto font-light leading-relaxed">
             Redefining luxury property presentation through technical precision and artistic storytelling.
@@ -40,7 +40,7 @@ export default function AboutPage() {
             <h2 className="font-playfair text-4xl font-bold text-primary mb-8">Our Story</h2>
             <div className="font-playfair grid md:grid-cols-2 gap-12 text-primary/70 text-lg leading-relaxed font-light">
               <p>
-                Founded with a vision to transform how luxury properties are presented, Cinematic Media
+                Founded with a vision to transform how luxury properties are presented, Naires Media
                 combines artistic excellence with technical precision. We believed that premium properties
                 deserved premium visual storytelling.
               </p>

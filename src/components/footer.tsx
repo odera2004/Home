@@ -51,7 +51,7 @@ export function Footer() {
                 info@nairesmedia.com
               </a>
               <a
-                href="tel:+254712345678"
+                href="tel:+254 112973302"
                 className="flex items-center gap-2 text-white hover:text-accent transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
@@ -59,7 +59,7 @@ export function Footer() {
               </a>
               <div className="flex gap-4 pt-2">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/nairesmedia?igsh=MTRuOHZlMnY5ZWFvaA%3D%3D&utm_source=qr"
                   className="text-white hover:text-accent transition-colors"
                   aria-label="Instagram"
                 >
