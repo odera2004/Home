@@ -18,9 +18,12 @@ export function Hero() {
     color: '#1a0f00',
   }
 
+  // Your Cloudinary Video Link
+  const videoUrl = "https://res.cloudinary.com/do0mtxjce/video/upload/v1773741514/WhatsApp_Video_2026-02-05_at_23.01.51_mb6ypr.mp4"
+
   return (
     <section className="relative w-full h-[100svh] flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Image - Explicit lower Z-index */}
+      {/* Background Video Container */}
       <div
         className="absolute inset-0 w-full h-full z-0"
         style={{
@@ -28,22 +31,25 @@ export function Hero() {
           willChange: 'transform',
         }}
       >
-        <img
-          src="https://www.tomferry.com/wp-content/uploads/2024/02/AdobeStock_220757323.jpg"
-          alt="Luxury Real Estate Background"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover object-center scale-110"
-          loading="eager"
-        />
-        {/* Overlays inside the background div to ensure they stay behind text */}
+        >
+          <source src={videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Cinematic Overlays */}
         <div className="absolute inset-0 bg-black/50 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 z-10" />
       </div>
 
-      {/* Content - High Z-index and relative positioning */}
+      {/* Content */}
       <div className="relative z-30 w-full px-6">
         <div className="max-w-4xl mx-auto text-center">
-          
-
           <h1 className="font-playfair text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-bold mb-6 leading-[1.1] drop-shadow-2xl">
             Visuals that <span className="italic text-accent">Attract.</span><br/>
             Websites that <span className="italic text-accent">Convert.</span>
@@ -54,7 +60,6 @@ export function Hero() {
             cinematic media with high-performance websites to sell listings faster.
           </p>
 
-          {/* Buttons - Stacked on tiny mobile, side-by-side on sm+ */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
             <Link
               href="/booking"
@@ -66,7 +71,7 @@ export function Hero() {
             </Link>
 
             <Link
-              href="/about"
+              href="/portfolio"
               className="w-full sm:w-auto rounded-full px-8 py-4 text-xs uppercase tracking-widest font-bold transition-all flex items-center justify-center gap-2 border border-white/30 text-white backdrop-blur-sm hover:bg-white hover:text-black"
             >
               See Portfolio
@@ -76,7 +81,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator - Hidden on very small screens to save space */}
+      {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 hidden sm:block">
         <div className="flex flex-col items-center gap-2 opacity-50">
           <span className="text-[10px] uppercase tracking-[0.3em] text-white">Scroll</span>
